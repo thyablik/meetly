@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10131c">
+  <title>Meetly — видеовстречи без регистрации</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <a class="brand" href="#"><span class="brand-mark">m</span><span>meetly</span></a>
+      <div class="top-actions"><span class="secure"><i></i> P2P-встречи</span><button class="icon-btn" id="themeBtn" title="Сменить тему">☼</button></div>
+    </header>
+
+    <main>
+      <section id="welcome" class="welcome">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="pulse"></span> ВИДЕОЗВОНКИ БЕЗ ЛИШНЕГО</div>
+          <h1>Просто встречайтесь.<br><em>Без регистрации.</em></h1>
+          <p class="sub">Создайте комнату, отправьте ссылку друзьям и общайтесь. Никаких аккаунтов и установок.</p>
+          <div class="join-card">
+            <label for="displayName">Как вас называть?</label>
+            <input id="displayName" maxlength="24" placeholder="Ваше имя" value="Гость">
+            <button id="createBtn" class="primary">＋ Создать встречу</button>
+            <div class="join-divider"><span>или присоединиться</span></div>
+            <div class="join-row"><input id="roomInput" placeholder="Введите код комнаты"><button id="joinBtn" class="secondary">Войти <span>→</span></button></div>
+            <p class="hint" id="homeStatus">Комната создаётся прямо в браузере.</p>
+          </div>
+        </div>
+        <div class="hero-art">
+          <div class="art-glow"></div>
+          <div class="mock-window">
+            <div class="mock-head"><span></span><span></span><span></span><b>meetly room</b></div>
+            <div class="mock-video">
+              <div class="mock-person">☺</div><div class="mock-name">Alex <small>●</small></div>
+              <div class="mock-tile"><div>☺</div><span>Sam</span></div>
+              <div class="mock-tile second"><div>☺</div><span>You</span></div>
+            </div>
+            <div class="mock-controls"><i>♩</i><i>▣</i><i class="mock-red">☎</i><i>☻</i></div>
+          </div>
+          <div class="float-tag tag-one">✦ Без аккаунта</div><div class="float-tag tag-two">↗ Прямое соединение</div>
+        </div>
+      </section>
+
+      <section id="meeting" class="meeting hidden">
+        <div class="meeting-head"><div><div class="eyebrow">ВАША ВСТРЕЧА</div><h2 id="roomTitle">Комната</h2><p id="connectionStatus">Подключение…</p></div><div class="room-code"><span>КОД КОМНАТЫ</span><b id="roomCode">------</b><button id="copyBtn">Копировать ссылку</button></div></div>
+        <div id="videoGrid" class="video-grid">
+          <article class="video-card local-card" id="localCard"><video id="localVideo" autoplay playsinline muted></video><div class="video-label"><span id="localName">Вы</span><small>● Вы</small></div></article>
+        </div>
+        <div class="meeting-bottom">
+          <div class="meeting-tools"><span id="callTimer">00:00</span><span class="tiny-dot"></span><span id="participantCount">1 участник</span></div>
+          <div class="controls">
+            <button class="control" id="micBtn"><b>🎙</b><span>Микрофон</span></button>
+            <button class="control" id="camBtn"><b>▣</b><span>Камера</span></button>
+            <button class="control" id="screenBtn"><b>▱</b><span>Экран</span></button>
+            <button class="control" id="chatBtn"><b>▤</b><span>Чат</span><i id="chatBadge" class="badge hidden">0</i></button>
+            <button class="control" id="reactBtn"><b>☺</b><span>Реакции</span></button>
+            <button class="control leave" id="leaveBtn"><b>☎</b><span>Выйти</span></button>
+          </div>
+          <div class="meeting-tools right-tools"><button id="copyCodeBtn" class="mini-btn">⧉ Код</button></div>
+        </div>
+        <aside id="chatPanel" class="chat-panel hidden">
+          <div class="chat-head"><b>Сообщения</b><button id="closeChat">×</button></div>
+          <div id="messages" class="messages"><div class="empty-chat">Пока тихо. Начните разговор 👋</div></div>
+          <form id="chatForm"><input id="chatInput" maxlength="500" placeholder="Написать сообщение…"><button>➤</button></form>
+        </aside>
+        <div id="reactionPicker" class="reaction-picker hidden"><button>👏</button><button>❤️</button><button>😂</button><button>🔥</button><button>👍</button><button>🎉</button></div>
+      </section>
+    </main>
+    <footer><span>meetly</span><span>Никаких аккаунтов. Просто связь.</span></footer>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
